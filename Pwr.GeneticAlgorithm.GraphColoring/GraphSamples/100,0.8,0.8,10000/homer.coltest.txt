@@ -1,0 +1,11 @@
+iteration: 0  result:  21
+iteration: 1  result:  22
+iteration: 2  result:  23
+iteration: 3  result:  22
+iteration: 4  result:  23
+iteration: 5  result:  21
+iteration: 6  result:  22
+iteration: 7  result:  23
+iteration: 8  result:  22
+iteration: 9  result:  22
+AvgResult: 22.1

@@ -1,0 +1,11 @@
+iteration: 0  result:  14
+iteration: 1  result:  14
+iteration: 2  result:  14
+iteration: 3  result:  14
+iteration: 4  result:  15
+iteration: 5  result:  14
+iteration: 6  result:  14
+iteration: 7  result:  14
+iteration: 8  result:  14
+iteration: 9  result:  14
+AvgResult: 14.1

@@ -1,0 +1,11 @@
+iteration: 0  result:  4
+iteration: 1  result:  4
+iteration: 2  result:  4
+iteration: 3  result:  4
+iteration: 4  result:  4
+iteration: 5  result:  4
+iteration: 6  result:  4
+iteration: 7  result:  4
+iteration: 8  result:  4
+iteration: 9  result:  4
+AvgResult: 4

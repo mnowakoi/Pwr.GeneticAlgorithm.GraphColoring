@@ -1,0 +1,11 @@
+iteration: 0  result:  24
+iteration: 1  result:  27
+iteration: 2  result:  28
+iteration: 3  result:  26
+iteration: 4  result:  27
+iteration: 5  result:  27
+iteration: 6  result:  26
+iteration: 7  result:  28
+iteration: 8  result:  26
+iteration: 9  result:  25
+AvgResult: 26.4
