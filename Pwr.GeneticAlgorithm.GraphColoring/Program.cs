@@ -18,13 +18,14 @@ namespace Pwr.GeneticAlgorithm.GraphColoring
             const string grafMaciek = "graf125736.col";
 
             var graph = new Graph(PathGenerator.GetPath(queen13_13));
-            var problem = new ColoringProblem(graph, 100, 1, 0.001, 1000);
+            var problem = new ColoringProblem(graph, 100, 0.9, 0.001, 5000);
             Console.WriteLine("5: " + problem.ColorGraph());
+            Console.WriteLine("SF: " + graph.GetInitialNumberOfColors());
 
-            //graph = new Graph(PathGenerator.GetPath(queen13_13));
-            //problem = new ColoringProblem(graph, 100, 0.5, 0.01, 1000);
-            //Console.WriteLine("9: " + problem.ColorGraph());
-
+            graph = new Graph(PathGenerator.GetPath(queen5_5));
+            problem = new ColoringProblem(graph, 100, 0.85, 0.01, 5000);
+            Console.WriteLine("9: " + problem.ColorGraph());
+            Console.WriteLine("SF: " + graph.GetInitialNumberOfColors());
             //graph = new Graph(PathGenerator.GetPath(homer));
             //problem = new ColoringProblem(graph, 100, 0.8, 0.2, 1000);
             //Console.WriteLine("13: " + problem.ColorGraph());

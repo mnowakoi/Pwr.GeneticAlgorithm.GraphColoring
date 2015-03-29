@@ -12,7 +12,7 @@ namespace Pwr.GeneticAlgorithm.GraphColoring
             GraphNodes = new List<List<int>>();
             EdgesCount = 0;
         }
-        
+
         public Graph(string filePath)
         {
             GraphNodes = new List<List<int>>();
@@ -28,7 +28,7 @@ namespace Pwr.GeneticAlgorithm.GraphColoring
             try
             {
                 using (var fileReader = new StreamReader(filePath))
-                {  
+                {
                     var line = "init";
                     while (!line.Substring(0, 1).Equals("p"))
                     {
@@ -45,7 +45,7 @@ namespace Pwr.GeneticAlgorithm.GraphColoring
                     }
 
                     line = fileReader.ReadLine();
-                    while(!string.IsNullOrEmpty(line))
+                    while (!string.IsNullOrEmpty(line))
                     {
                         subStrings = Regex.Split(line, "[ ]");
                         var node = int.Parse(subStrings[1]) - 1;
@@ -69,8 +69,68 @@ namespace Pwr.GeneticAlgorithm.GraphColoring
 
         public int GetInitialNumberOfColors()
         {
-            var maxN = GraphNodes.Select(t => t.Count).Concat(new[] {0}).Max();
-            return EdgesCount / GraphNodes.Count + maxN;
+            var orderedNodesIndexes = GetOrderedNodesIndexes();
+            var result = PrepareResultArray();
+            ColorLargestFirst(orderedNodesIndexes, result);
+            return result.Max();
+        }
+
+        private List<int> GetOrderedNodesIndexes()
+        {
+            var cache = new List<int>(GraphNodes.Count);
+            while (cache.Count < GraphNodes.Count)
+            {
+                var indexSmallest = 0;
+                var smallestNeighbour = 0;
+                for (var i = 0; i < GraphNodes.Count; ++i)
+                {
+                    if (cache.Contains(i)) continue;
+                    if (smallestNeighbour == 0)
+                    {
+                        indexSmallest = i;
+                        smallestNeighbour = GraphNodes[i].Count;
+                    }
+                    else if (GraphNodes[i].Count < smallestNeighbour)
+                    {
+                        indexSmallest = i;
+                        smallestNeighbour = GraphNodes[i].Count;
+                    }
+                }
+                cache.Add(indexSmallest);
+            }
+            return cache;
+        }
+
+        private void ColorLargestFirst(List<int> orderedNodesIndexes, int[] result)
+        {
+            for (var indexLargest = orderedNodesIndexes.Count - 1; indexLargest > 0; indexLargest--)
+            {
+                var j = 0;
+                var color = 1;
+                while (j < GraphNodes[indexLargest].Count)
+                {
+                    if (result[GraphNodes[indexLargest][j]] == color)
+                    {
+                        j = 0;
+                        color++;
+                    }
+                    else
+                    {
+                        ++j;
+                    }
+                }
+                result[indexLargest] = color;
+            }
+        }
+
+        private int[] PrepareResultArray()
+        {
+            var result = new int[GraphNodes.Count];
+            for (var i = 0; i < result.Length; ++i)
+            {
+                result[i] = -1;
+            }
+            return result;
         }
     }
 }

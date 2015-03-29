@@ -31,7 +31,7 @@ namespace Pwr.GeneticAlgorithm.GraphColoring
 
         public int ColorGraph()
         {
-            var minimumColorsCount = 35;
+            var minimumColorsCount = _graph.GetInitialNumberOfColors() - 1;
             while (TryColor(minimumColorsCount))
             {
                 minimumColorsCount--;
@@ -45,19 +45,16 @@ namespace Pwr.GeneticAlgorithm.GraphColoring
             GenerateFirstPopulation(colorsCount);
             EvaluatePopulation();
             var fittest = Evolve();
-            var fit = new Chromosome(100);
             while (fittest.Fitness != 0 && iterationsLeft > 0)
             {
                 fittest = Evolve();
-                fit = fittest.GetTwin();
                 //if (iterationsLeft%20 == 0)
                 //{
-                Console.WriteLine("najlepszy {0}; pozostalo {1}; najgorszy {2}; srednia {3};   {4}", FindBestFitness(), iterationsLeft, FindWorstFitness(), FindAvgFitness(),colorsCount);
-           //}
+                // Console.WriteLine("najlepszy {0}; pozostalo {1}; najgorszy {2}; srednia {3};   {4}", FindBestFitness(), iterationsLeft, FindWorstFitness(), FindAvgFitness(),colorsCount);
+                //}
                 iterationsLeft--;
             }
-            fit = fit;
-         //   Console.WriteLine("najlepszy {0}; pozostalo {1}; najgorszy {2}; {3}", FindBestFitness(), iterationsLeft, FindWorstFitness(), colorsCount);
+            //   Console.WriteLine("najlepszy {0}; pozostalo {1}; najgorszy {2}; {3}", FindBestFitness(), iterationsLeft, FindWorstFitness(), colorsCount);
             return fittest.Fitness == 0;
         }
 
